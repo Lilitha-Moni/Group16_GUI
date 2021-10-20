@@ -69,7 +69,7 @@
 
         <div class="profile-details">
             <img src="../resources/img/dashboard/profile_icon.png" alt=""> <span
-                class="admin_name"> AKHONA MNGQIBISA</span>
+                class="admin_name">${username}</span>
         </div>
 
     </nav>
