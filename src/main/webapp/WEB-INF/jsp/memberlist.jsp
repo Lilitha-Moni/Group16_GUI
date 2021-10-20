@@ -10,41 +10,41 @@
 </head>
 <body>
 
-    <h2>Members </h2>
+<h2>Members </h2>
 
-    <a href="/member/new">
-        <button type="submit">Add new Member</button>
-    </a>
-    <br/><br/>
+<a href="/member/new">
+    <button type="submit">Add new Member</button>
+</a>
+<br/><br/>
 
-    <div class="table-wrapper">
-        <table class="fl-table">
-            <thead>
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Manage</th>
+        </tr>
+
+        </thead>
+
+        <c:forEach items="${listMembers}" var="member">
+            <tbody>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Manage</th>
+                <td>${member.memberID}</td>
+                <td>${member.firstName} ${member.lastName}</td>
+                <td><a
+                        href="/read/{id}=<c:out value='${member.memberID}' />">View</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp; <a
+                            href="/update=<c:out value='${member.memberID}' />">Edit</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp; <a
+                            href="/delete/{id}=<c:out value='${member.memberID}' />">Delete</a></td>
+
             </tr>
-
-            </thead>
-
-            <c:forEach items="${listMembers}" var="member">
-                <tbody>
-                <tr>
-                    <td>${member.memberID}</td>
-                    <td>${member.firstName} ${member.lastName}</td>
-                    <td><a
-                            href="/read/{id}=<c:out value='${member.memberID}' />">View</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp; <a
-                                href="/update=<c:out value='${member.memberID}' />">Edit</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp; <a
-                                href="/delete/{id}=<c:out value='${member.memberID}' />">Delete</a></td>
-
-                </tr>
-                </tbody>
-            </c:forEach>
-        </table>
-    </div>
+            </tbody>
+        </c:forEach>
+    </table>
+</div>
 
 </body>
 </html>
