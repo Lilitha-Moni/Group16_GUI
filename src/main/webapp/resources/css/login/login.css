@@ -8,7 +8,7 @@
     outline: none;
 }
 body {
-    font-family: Arial;
+    font-family: Arial, serif;
     background-color: #3498DB;
     padding: 50px;
 }
@@ -78,4 +78,17 @@ input:focus {
     color: #444;
     display: block;
     margin-top: 12px;
+}
+
+.warning {
+    text-align: center;
+    height: 3em;
+    line-height: 2em;
+}
+
+.warning span {
+    margin: 5px;
+    background: #FFC900;
+    width: 250px;
+    display: inline-block;
 }
