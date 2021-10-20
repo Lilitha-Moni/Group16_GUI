@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.view.RedirectView;
 import za.ac.cput.GymManagementGUI;
 import za.ac.cput.entity.GymSession;
 import za.ac.cput.entity.MedicalStaff;
@@ -32,6 +33,7 @@ public class MedicalStaffController {
             HttpServletRequest request,
             Model model
     ) {
+        System.out.println("Hi");
         GymSession session = GymSessionRepository.getRepository().read(request.getRequestedSessionId()); // Get session (Username and password)
         try {
             HttpClient client = HttpClient.newHttpClient();
@@ -50,11 +52,11 @@ public class MedicalStaffController {
         } catch (IOException | InterruptedException | URISyntaxException e) {
             e.printStackTrace();
         }
-        return "medicalstaff/getall";
+        return "medicalstaff/menu";
     }
 
     @DeleteMapping("/delete/{id}")
-    public void delete(
+    public RedirectView delete(
             @PathVariable("id") int id,
             HttpServletRequest request
     ) {
@@ -72,5 +74,6 @@ public class MedicalStaffController {
         } catch (IOException | InterruptedException | URISyntaxException e) {
             e.printStackTrace();
         }
+        return new RedirectView("/medicalstaff");
     }
 }
