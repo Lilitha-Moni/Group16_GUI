@@ -41,7 +41,7 @@
                 src="../resources/img/dashboard/equipment_icon.png"></i><span class="links_name">Equipment</span>
         </a></li>
 
-        <li><a href="#"> <i class='medicals'><img
+        <li><a href="${pageContext.request.contextPath}/medicalstaff"> <i class='medicals'><img
                 src="../resources/img/dashboard/medicals_icon.png"></i> <span class="links_name">Medical Staff</span></a></li>
 
         <li class="sign_out"><a href="/logout"> <i class='signout'><img
@@ -73,8 +73,8 @@
         </div>
 
     </nav>
-
-
+    <div class="content">
+    </div>
 </section>
 </body>
 

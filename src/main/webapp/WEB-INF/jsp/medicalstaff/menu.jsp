@@ -41,7 +41,7 @@
                 src="../resources/img/dashboard/equipment_icon.png"></i><span class="links_name">Equipment</span>
         </a></li>
 
-        <li><a href="#"> <i class='medicals'><img
+        <li><a href="${pageContext.request.contextPath}/medicalstaff"> <i class='medicals'><img
                 src="../resources/img/dashboard/medicals_icon.png"></i> <span class="links_name">Medical Staff</span></a></li>
 
         <li class="sign_out"><a href="/logout"> <i class='signout'><img
@@ -73,18 +73,28 @@
         </div>
 
     </nav>
-    <h1>Medical Staff</h1>
-    <table>
-        <c:forEach items="${allMedicalStaff}" var="current">
+    <div class="content">
+        <h1>Medical Staff</h1>
+        <table>
             <tr>
-                <td>${current.firstName} ${current.lastName}</td>
-                <td>${current.phoneNumber}</td>
-                <td>${current.email}</td>
-                <td><a href="${pageContext.request.contextPath}/medicalstaff/update/${current.}">update</a></td>
-                <td><a href="${pageContext.request.contextPath}/medicalstaff/delete">delete</a></td>
+                <th>Name</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>Update</th>
+                <th>Delete</th>
             </tr>
-        </c:forEach>
-    </table>
+            <c:forEach items="${allMedicalStaff}" var="current">
+                <tr>
+                    <td>${current.firstName} ${current.lastName}</td>
+                    <td>${current.phoneNumber}</td>
+                    <td>${current.email}</td>
+                    <td><a href="${pageContext.request.contextPath}/medicalstaff/update/${current.id}">update</a></td>
+                    <td><a href="${pageContext.request.contextPath}/medicalstaff/delete/${current.id}">delete</a></td>
+                </tr>
+            </c:forEach>
+        </table>
+        <a href="${pageContext.request.contextPath}/medicalstaff/create"></a>
+    </div>
 </section>
 </body>
 
