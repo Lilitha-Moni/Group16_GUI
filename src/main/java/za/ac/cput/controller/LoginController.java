@@ -1,6 +1,6 @@
 package za.ac.cput.controller;
 
-import org.apache.http.HttpResponse;
+import org.apache.http.HttpHeaders;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -19,6 +19,11 @@ import za.ac.cput.repository.GymSessionRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,18 +47,18 @@ public class LoginController {
             String password
     ) {
         try {
-            DefaultHttpClient client = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost(GymManagementGUI.serverAddress()+"/login");
+            GymSession testSession = new GymSession("", username, password);
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest httpRequest = HttpRequest.newBuilder()
+                    .uri(new URI(GymManagementGUI.serverAddress()+"/login")) // url of server
+                    .GET() // request type
+                    .header(HttpHeaders.CONTENT_TYPE, "application/json")
+                    .header(HttpHeaders.AUTHORIZATION, testSession.encoded()) // Sets basic auth
+                    .build();
 
-            List<NameValuePair> pairs = new ArrayList<>();
-            pairs.add(new BasicNameValuePair("username", username));
-            pairs.add(new BasicNameValuePair("password", password));
+            java.net.http.HttpResponse<String> resp = client.send(httpRequest, HttpResponse.BodyHandlers.ofString()); // response
 
-            httpPost.setEntity(new UrlEncodedFormEntity(pairs));
-            HttpResponse resp = client.execute(httpPost);
-            String stringResp = new BasicResponseHandler().handleResponse(resp);
-
-            if(!stringResp.strip().isBlank())
+            if(resp.body().equals("success"))
             {
                 GymSessionRepository.getRepository().create(new GymSession(request.getRequestedSessionId(), username, password));
                 return new RedirectView("dashboard");
@@ -61,7 +66,7 @@ public class LoginController {
 
             attributes.addAttribute("user", "not-found");
             return new RedirectView("login");
-        } catch (IOException e) {// | URISyntaxException | InterruptedException e) {
+        } catch (IOException | URISyntaxException | InterruptedException e) {// | URISyntaxException | InterruptedException e) {
             e.printStackTrace();
         }
         return new RedirectView("login");
