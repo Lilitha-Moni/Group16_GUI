@@ -1,13 +1,7 @@
 package za.ac.cput.entity;
 
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
 public class MedicalStaff {
 
-    @Id
     private int id;
     private String firstName;
     private String lastName;
@@ -127,5 +121,19 @@ public class MedicalStaff {
 
     public int getMedicalEmergenciesDone() {
         return medicalEmergenciesDone;
+    }
+
+    @Override
+    public String toString() {
+        return "MedicalStaff{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", checkupsDone=" + checkupsDone +
+                ", fitnessTestsDone=" + fitnessTestsDone +
+                ", medicalEmergenciesDone=" + medicalEmergenciesDone +
+                '}';
     }
 }

@@ -6,7 +6,7 @@
     <meta charset="ISO-8859-1">
     <title>Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../resources/css/dashboard/dashboard.css" rel="stylesheet" type="text/css">
+    <link href="../../resources/css/dashboard/dashboard.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -75,25 +75,26 @@
     </nav>
     <div class="content">
         <h1>Medical Staff</h1>
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Phone Number</th>
-                <th>Email</th>
-                <th>Update</th>
-                <th>Delete</th>
-            </tr>
-            <c:forEach items="${allMedicalStaff}" var="current">
-                <tr>
-                    <td>${current.firstName} ${current.lastName}</td>
-                    <td>${current.phoneNumber}</td>
-                    <td>${current.email}</td>
-                    <td><a href="${pageContext.request.contextPath}/medicalstaff/update/${current.id}">update</a></td>
-                    <td><a href="${pageContext.request.contextPath}/medicalstaff/delete/${current.id}">delete</a></td>
-                </tr>
-            </c:forEach>
-        </table>
-        <a href="${pageContext.request.contextPath}/medicalstaff/create">Add new</a>
+        <h3>${subheading}</h3>
+        <form method="POST">
+            <input type="hidden" name="id" value="${medicalstaff.id}">
+            <input type="hidden" name="checkups_done" value="${medicalstaff.checkupsDone}">
+            <input type="hidden" name="medical_emergencies_done" value="${medicalstaff.medicalEmergenciesDone}">
+
+            <label for="ms_firstname">First name</label><br>
+            <input type="text" name="firstName" id="ms_firstname" value="${medicalstaff.firstName}"><br>
+
+            <label for="ms_lastname">Last name</label><br>
+            <input type="text" name="lastName" id="ms_lastname" value="${medicalstaff.lastName}"><br>
+
+            <label for="ms_email">Email</label><br>
+            <input type="text" name="email" id="ms_email" value="${medicalstaff.email}"><br>
+
+            <label for="ms_phone_number">Phone number</label><br>
+            <input type="text" name="phoneNumber" id="ms_phone_number" value="${medicalstaff.phoneNumber}"><br>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
     </div>
 </section>
 </body>

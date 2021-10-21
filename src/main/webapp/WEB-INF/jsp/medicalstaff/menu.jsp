@@ -93,7 +93,7 @@
                 </tr>
             </c:forEach>
         </table>
-        <a href="${pageContext.request.contextPath}/medicalstaff/create"></a>
+        <a href="${pageContext.request.contextPath}/medicalstaff/create">Add new</a>
     </div>
 </section>
 </body>
