@@ -1,7 +1,6 @@
 package za.ac.cput.controller;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
@@ -31,7 +30,6 @@ public class MedicalStaffController {
             HttpServletRequest request,
             Model model
     ) {
-        System.out.println("Hi");
         GymSession session = GymSessionRepository.getRepository().read(request.getRequestedSessionId()); // Get session (Username and password)
         try {
             HttpClient client = HttpClient.newHttpClient();
@@ -66,7 +64,6 @@ public class MedicalStaffController {
             HttpServletRequest request,
             @ModelAttribute("medicalstaff") MedicalStaff medicalStaff
     ) {
-        System.out.println(medicalStaff);
         GymSession session = GymSessionRepository.getRepository().read(request.getRequestedSessionId()); // Get session (Username and password)
         try {
             ObjectMapper mapper = new ObjectMapper();
@@ -124,6 +121,7 @@ public class MedicalStaffController {
         GymSession session = GymSessionRepository.getRepository().read(request.getRequestedSessionId()); // Get session (Username and password)
         try {
             ObjectMapper mapper = new ObjectMapper();
+            medicalStaff.setId(id);
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest httpRequest = HttpRequest.newBuilder()
                     .uri(new URI(GymManagementGUI.serverAddress()+"/medicalstaff/update")) // url of server
