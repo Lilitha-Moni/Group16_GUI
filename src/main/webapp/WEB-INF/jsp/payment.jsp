@@ -4,38 +4,30 @@
 <html>
 <head>
     <meta charset="ISO-8859-1">
-    <title>Admin</title>
+    <title>payment</title>
     <link href="../resources/css/table_style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<h2>${admin.fisrtName} ${admin.lastName} Information</h2>
+<h2>${payment.paymentAmount} ${payment.paymentDate} Information</h2>
 <div class="table-wrapper">
     <table class="fl-table">
         <thead>
         <tr>
             <th>ID</th>
-            <th>fisrtName</th>
-            <th>LastName</th>
-            <th>phoneNo</th
-            <th>emailAdrdress</th>
-
+            <th>paymentAmount</th>
+            <th>paymentDate</th>
         </tr>
 
         </thead>
 
         <tbody>
         <tr>
-            <td>${Admin.ID}</td>
-            <td>${Admin.fisrtName}</td>
-            <td>${Admin.LastName}</td>
-            <td>${Admin.phoneNo}</td>
-            <td>${Admin.emailAdrdress}</td>
-
-
-            <td>
-                <a href="/update=<c:out value='${Admin.equipmentID}' />">Update</a>
+            <td>${payment.paymentID}</td>
+            <td>${payment.paymentAmount}</td>
+            <td>${payment.paymentDate}</td>
+                <a href="/update=<c:out value='${payment.paymentID}' />">Update</a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="/delete/{id}=<c:out value='${Admin.equipmentID}' />">Delete</a>
+                <a href="/delete/{id}=<c:out value='${payment.paymentID}' />">Delete</a>
             </td>
         </tr>
         </tbody>
