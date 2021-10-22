@@ -143,6 +143,11 @@ url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;7
     border: 1px solid black;
 }
 
+.home-section .content th,
+.home-section .content td {
+    padding: 5px;
+}
+
 .sidebar.active ~ .home-section nav {
     left: 60px;
     width: calc(100% - 60px);

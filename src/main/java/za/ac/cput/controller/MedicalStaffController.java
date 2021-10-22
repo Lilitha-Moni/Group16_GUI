@@ -48,7 +48,8 @@ public class MedicalStaffController {
         } catch (IOException | InterruptedException | URISyntaxException e) {
             e.printStackTrace();
         }
-        return "medicalstaff/menu";
+        model.addAttribute("file", "../medicalstaff/menu.jsp");
+        return "template/dashboard";
     }
 
     @GetMapping("/create")
@@ -56,7 +57,8 @@ public class MedicalStaffController {
             Model model
     ) {
         model.addAttribute("subheadding", "Create new Medical Staff member");
-        return "medicalstaff/form";
+        model.addAttribute("file", "../medicalstaff/form.jsp");
+        return "template/dashboard";
     }
 
     @PostMapping("/create")
@@ -104,7 +106,8 @@ public class MedicalStaffController {
 
             model.addAttribute("subheadding", "Create new Medical Staff member");
             model.addAttribute("medicalstaff", medicalstaff);
-            return "medicalstaff/form";
+            model.addAttribute("file", "../medicalstaff/form.jsp");
+            return "template/dashboard";
 
         } catch (URISyntaxException | InterruptedException | IOException e) {
             e.printStackTrace();
