@@ -1,7 +1,10 @@
 package za.ac.cput.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import za.ac.cput.entity.GymSession;
+import za.ac.cput.repository.GymSessionRepository;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,10 +13,13 @@ public class HomeController
 {
     @RequestMapping({"/", "/home"})
     public String home(
-            HttpServletRequest request
+            HttpServletRequest request,
+            Model model
     )
     {
-        System.out.println(request.getRequestedSessionId());
+        GymSession session = GymSessionRepository.getSession(request.getRequestedSessionId());
+        if(session != null)
+            model.addAttribute("logged_in", true);
         return "home";
     }
 }

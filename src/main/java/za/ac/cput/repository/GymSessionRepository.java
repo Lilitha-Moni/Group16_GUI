@@ -28,6 +28,11 @@ public class GymSessionRepository {
         return repository.get(sessionId);
     }
 
+    public static GymSession getSession(String sessionId) {
+        GymSessionRepository repo = getRepository();
+        return repo.read(sessionId);
+    }
+
     public void delete(String sessionId) {
         repository.remove(sessionId);
     }

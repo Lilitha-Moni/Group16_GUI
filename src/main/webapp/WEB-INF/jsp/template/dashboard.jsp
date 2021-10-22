@@ -1,4 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%--@elvariable id="username" type="java.lang.String"--%>
+<%--@elvariable id="task" type="za.ac.cput.entity.Member"--%>
+<%@ page contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
@@ -14,53 +16,132 @@
 
 <div class="sidebar">
     <div class="logo-details">
-        <img src="${pageContext.request.contextPath}/resources/img/logo/logo_white.png" style="width: 70%">
+        <img 
+                src="${pageContext.request.contextPath}/resources/img/logo/logo_white.png" 
+                style="width: 70%" 
+                alt="Logo">
     </div>
     <ul class="nav-links">
 
-        <li><a href="#" class="active"><i class='home'><img
-                src="${pageContext.request.contextPath}/resources/img/dashboard/home_icon.png"> </i><span class="links_name">Home</span></a></li>
+        <li>
+            <a href="${pageContext.request.contextPath}/" class="active">
+                <i class='home'>
+                    <img 
+                            src="${pageContext.request.contextPath}/resources/img/dashboard/home_icon.png" 
+                            alt="Home icon">
+                </i>
+                <span class="links_name">Home</span>
+            </a>
+        </li>
 
-        <li><a href="${pageContext.request.contextPath}/member/getall"> <i class='member'><img
-                src="${pageContext.request.contextPath}/resources/img/dashboard/member_icon.png"></i> <span class="links_name">Members</span></a></li>
+        <li>
+            <a href="${pageContext.request.contextPath}/member">
+                <i class='member'>
+                    <img 
+                            src="${pageContext.request.contextPath}/resources/img/dashboard/member_icon.png" 
+                            alt="Member icon">
+                </i>
+                <span class="links_name">Members</span>
+            </a>
+        </li>
 
-        <li><a href="${pageContext.request.contextPath}/trainer/getall"> <i class='trainer'><img
-                src="${pageContext.request.contextPath}/resources/img/dashboard/trainer_icon.png"></i> <span class="links_name">Trainers</span></a></li>
+        <li>
+            <a href="${pageContext.request.contextPath}/trainer">
+                <i class='trainer'>
+                    <img
+                            src="${pageContext.request.contextPath}/resources/img/dashboard/trainer_icon.png" 
+                            alt="Trainer icon">
+                </i>
+                <span class="links_name">Trainers</span>
+            </a>
+        </li>
 
-        <li><a href="${pageContext.request.contextPath}/schedule/getall"> <i class='schedule'><img
-                src="${pageContext.request.contextPath}/resources/img/dashboard/calendar_icon.png"></i> <span class="links_name">Schedule</span></a></li>
+        <li>
+            <a href="${pageContext.request.contextPath}/schedule">
+                <i class='schedule'>
+                    <img
+                            src="${pageContext.request.contextPath}/resources/img/dashboard/calendar_icon.png" 
+                            alt="Calendar icon">
+                </i> 
+                <span class="links_name">Schedule</span>
+            </a>
+        </li>
 
-        <li><a href="#"> <i class='plans'><img
-                src="${pageContext.request.contextPath}/resources/img/dashboard/plans_icon.png"></i> <span class="links_name">Plans</span></a></li>
+        <li>
+            <a href="${pageContext.request.contextPath}/plans">
+                <i class='plans'>
+                    <img
+                            src="${pageContext.request.contextPath}/resources/img/dashboard/plans_icon.png" 
+                            alt="Plans icon">
+                </i>
+                <span class="links_name">Plans</span>
+            </a>
+        </li>
 
-        <li><a href="#"> <i class='packages'><img
-                src="${pageContext.request.contextPath}/resources/img/dashboard/packages_icon.png"></i> <span class="links_name">Packages</span></a></li>
+        <li>
+            <a href="${pageContext.request.contextPath}/packages">
+                <i class='packages'>
+                    <img
+                            src="${pageContext.request.contextPath}/resources/img/dashboard/packages_icon.png" 
+                            alt="Packages icon">
+                </i>
+                <span class="links_name">Packages</span>
+            </a>
+        </li>
 
-        <li><a href="#"> <i class='equipment'><img
-                src="${pageContext.request.contextPath}/resources/img/dashboard/equipment_icon.png"></i><span class="links_name">Equipment</span>
-        </a></li>
+        <li>
+            <a href="${pageContext.request.contextPath}/equipment">
+                <i class='equipment'>
+                    <img
+                            src="${pageContext.request.contextPath}/resources/img/dashboard/equipment_icon.png" 
+                            alt="Equipment icon">
+                </i>
+                <span class="links_name">Equipment</span>
+            </a>
+        </li>
 
-        <li><a href="${pageContext.request.contextPath}/medicalstaff"> <i class='medicals'><img
-                src="${pageContext.request.contextPath}/resources/img/dashboard/medicals_icon.png"></i> <span class="links_name">Medical Staff</span></a></li>
+        <li>
+            <a href="${pageContext.request.contextPath}/medicalstaff">
+                <i class='medicals'>
+                    <img
+                            src="${pageContext.request.contextPath}/resources/img/dashboard/medicals_icon.png" alt="Medical Staff icon">
+                </i>
+                <span class="links_name">Medical Staff</span>
+            </a>
+        </li>
 
-        <li class="sign_out"><a href="${pageContext.request.contextPath}/logout"> <i class='signout'><img
-                src="${pageContext.request.contextPath}/resources/img/dashboard/signout_icon.png"></i><span class="links_name">Sign
-						out</span></a></li>
+        <li class="sign_out">
+            <a href="${pageContext.request.contextPath}/logout">
+                <i class='signout'>
+                    <img
+                            src="${pageContext.request.contextPath}/resources/img/dashboard/signout_icon.png" 
+                            alt="Sign out icon">
+                </i>
+                <span class="links_name">Sign out</span>
+            </a>
+        </li>
     </ul>
 
 </div>
 <section class="home-section">
     <nav>
         <div class="sidebar-button">
-            <i class='menu'><img src="${pageContext.request.contextPath}/resources/img/dashboard/menu_icon.png"></i> <span
-                class="dashboard"></span>
+            <i class='menu'>
+                <img 
+                        src="${pageContext.request.contextPath}/resources/img/dashboard/menu_icon.png" 
+                        alt="Menu icon">
+            </i>
+            <span class="dashboard"></span>
         </div>
 
         <form name="searchTask" method="post">
             <div class="search-box">
-                <input type="number" id="id" name="id" placeholder="MEMBER"
-                       value="${task.id}"> <i class='search'
-                                              onclick="searchTaskById()"><img src="${pageContext.request.contextPath}/resources/img/dashboard/search_icon.png"></i>
+                <label for="id"></label>
+                <input type="number" id="id" name="id" placeholder="MEMBER" value="${task.memberID}">
+                    <i class='search' onclick="searchTaskById()">
+                        <img src="${pageContext.request.contextPath}/resources/img/dashboard/search_icon.png" 
+                             alt="Search icon">
+                    </i>
             </div>
         </form>
 
@@ -73,6 +154,7 @@
 
     </nav>
     <div class="content">
+        <%--@elvariable id="file" type="java.lang.String"--%>
         <jsp:include page="${file}"/>
     </div>
 </section>
