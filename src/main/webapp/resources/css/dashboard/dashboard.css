@@ -123,15 +123,29 @@ url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;7
     justify-content: space-between;
     height: 80px;
     background: #fff;
-    display: flex;
     align-items: center;
-    position: fixed;
-    width: calc(100% - 240px);
-    left: 240px;
+    position: sticky;
+    top: 0;
+    right: 0;
     z-index: 100;
     padding: 0 20px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     transition: all 0.5s ease;
+}
+
+.home-section .content {
+    padding: 2em;
+}
+
+.home-section .content table,
+.home-section .content th,
+.home-section .content td {
+    border: 1px solid black;
+}
+
+.home-section .content th,
+.home-section .content td {
+    padding: 5px;
 }
 
 .sidebar.active ~ .home-section nav {

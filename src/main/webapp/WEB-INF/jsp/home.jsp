@@ -1,3 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +20,16 @@
                 <li id="nav-about"><a href="#about">About</a></li>
                 <li id="nav-services"><a href="#services">Services</a></li>
                 <li><a href="${pageContext.request.contextPath}/contact">Contact</a></li>
-                <li><a href="${pageContext.request.contextPath}/login">Log In</a></li>
+                <c:choose>
+                    <%--@elvariable id="logged_in" type="java.lang.Boolean"--%>
+                    <c:when test="${not empty logged_in}">
+                        <li><a href="${pageContext.request.contextPath}/dashboard">Dashboard</a></li>
+                        <li><a href="${pageContext.request.contextPath}/logout">Log Out</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li><a href="${pageContext.request.contextPath}/login">Log In</a></li>
+                    </c:otherwise>
+                </c:choose>
             </ul>
         </nav>
     </header>
@@ -33,9 +45,9 @@
         <div id="services" class="hyperlink"></div>
         <h2>Services</h2>
         <div class="service-cards">
-            <div class="card"><img src="https://unsplash.it/250/250" alt=""></div>
-            <div class="card"><img src="https://unsplash.it/251/251" alt=""></div>
-            <div class="card"><img src="https://unsplash.it/252/252" alt=""></div>
+            <div class="card"><img src="https://unsplash.it/250/250?a=0" alt=""></div>
+            <div class="card"><img src="https://unsplash.it/250/250?a=1" alt=""></div>
+            <div class="card"><img src="https://unsplash.it/250/250?a=2" alt=""></div>
         </div>
     </div>
 </body>
