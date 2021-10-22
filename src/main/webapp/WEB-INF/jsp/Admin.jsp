@@ -9,83 +9,15 @@
 </head>
 <body>
 <h2>${admin.fisrtName} ${admin.lastName} Information</h2>
-
-
-
-<h2>${member.firstName} ${member.lastName} Information</h2>
 <div class="table-wrapper">
     <table class="fl-table">
         <thead>
         <tr>
             <th>ID</th>
-            <th>FirstName</th>
+            <th>fisrtName</th>
             <th>LastName</th>
-            <th>Age</th>
-            <th>Address</th>
-            <th>Phone No</th>
-            <th>Email Address</th>
-            <th>Password</th>
-            <th>Status</th>
-            <th>Manage</th>
-        </tr>
-
-        </thead>
-
-        <tbody>
-        <tr>
-            <td>${member.memberID}</td>
-            <td>${member.firstName}</td>
-            <td>${member.lastName}</td>
-            <td>${member.age}</td>
-            <td>${member.address}</td>
-            <td>${member.phoneNo}</td>
-            <td>${member.emailAddress}</td>
-            <td>${member.password}</td>
-            <td>${member.status}</td>
-
-            <td>
-                <a href="/update=<c:out value='${member.memberID}' />">Update</a>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="/delete/{id}=<c:out value='${member.memberID}' />">Delete</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<h2>${payment.paymentAmount} ${payment.paymentDate} Information</h2>
-<div class="table-wrapper">
-    <table class="fl-table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>paymentAmount</th>
-            <th>paymentDate</th>
-        </tr>
-
-        </thead>
-
-        <tbody>
-        <tr>
-            <td>${payment.paymentID}</td>
-            <td>${payment.paymentAmount}</td>
-            <td>${payment.paymentDate}</td>
-            <a href="/update=<c:out value='${payment.paymentID}' />">Update</a>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="/delete/{id}=<c:out value='${payment.paymentID}' />">Delete</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<h2>${equipmentID.Name} ${equipment.Model} Information</h2>
-<div class="table-wrapper">
-    <table class="fl-table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Model</th>
-            <th>Info</th>
+            <th>phoneNo</th
+            <th>emailAdrdress</th>
 
         </tr>
 
@@ -93,16 +25,17 @@
 
         <tbody>
         <tr>
-            <td>${equipment.equipmentID}</td>
-            <td>${equipment.equipmentName}</td>
-            <td>${equipment.equipmentModel}</td>
-            <td>${equipment.equipmentInfo}</td>
+            <td>${Admin.ID}</td>
+            <td>${Admin.fisrtName}</td>
+            <td>${Admin.LastName}</td>
+            <td>${Admin.phoneNo}</td>
+            <td>${Admin.emailAdrdress}</td>
 
 
             <td>
-                <a href="/update=<c:out value='${equipment.equipmentID}' />">Update</a>
+                <a href="/update=<c:out value='${Admin.equipmentID}' />">Update</a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="/delete/{id}=<c:out value='${equipment.equipmentID}' />">Delete</a>
+                <a href="/delete/{id}=<c:out value='${Admin.equipmentID}' />">Delete</a>
             </td>
         </tr>
         </tbody>
