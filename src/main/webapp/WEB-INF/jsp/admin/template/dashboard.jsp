@@ -99,6 +99,26 @@
                 <span class="links_name">Equipment</span>
             </a>
         </li>
+        <li>
+            <a href="${pageContext.request.contextPath}/payment">
+                <i class='payment'>
+                    <img
+                            src="${pageContext.request.contextPath}/resources/img/dashboard/payment-icon.png"
+                            alt="payment icon">
+                </i>
+                <span class="links_name">payment</span>
+            </a>
+        </li>
+        <li>
+            <a href="${pageContext.request.contextPath}/admin">
+                <i class='admin'>
+                    <img
+                            src="${pageContext.request.contextPath}/resources/img/dashboard/admin-icon.png"
+                            alt="admin icon">
+                </i>
+                <span class="links_name">admin</span>
+            </a>
+        </li>
 
         <li>
             <a href="${pageContext.request.contextPath}/medicalstaff">
