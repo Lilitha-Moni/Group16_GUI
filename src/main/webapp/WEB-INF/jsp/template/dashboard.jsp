@@ -109,7 +109,7 @@
                 <span class="links_name">Medical Staff</span>
             </a>
         </li>
-             
+
         <li class="sign_out">
             <a href="${pageContext.request.contextPath}/logout">
                 <i class='signout'>
