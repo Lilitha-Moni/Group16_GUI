@@ -10,9 +10,10 @@ Entity for the Admin
 Author: Bongisa Mpahleni (216205999)
 Date: 09 June 2021
 */
-
+@Entity
+@Table(name = "Admin")
 public class Admin {
-
+    @Id
     private int ID;
 
     private String firstName;
