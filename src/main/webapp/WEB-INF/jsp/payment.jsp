@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="ISO-8859-1">
-    <title>Payment</title>
+    <title>payment</title>
     <link href="../resources/css/table_style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
