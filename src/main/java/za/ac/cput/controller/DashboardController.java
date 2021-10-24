@@ -16,9 +16,9 @@ public class DashboardController {
             Model model
     )
     {
-        GymSession session = GymSessionRepository.getRepository().read(request.getRequestedSessionId());
+        GymSession session = GymSessionRepository.getSession(request.getRequestedSessionId());
         if(session != null)
             model.addAttribute("username", session.getUsername());
-        return "template/dashboard";
+        return "admin/template/dashboard";
     }
 }

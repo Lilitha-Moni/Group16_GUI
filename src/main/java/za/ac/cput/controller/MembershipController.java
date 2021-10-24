@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import za.ac.cput.GymManagementGUI;
 import za.ac.cput.entity.GymSession;
-import za.ac.cput.entity.MedicalStaff;
+import za.ac.cput.entity.Membership;
 import za.ac.cput.repository.GymSessionRepository;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,8 +22,8 @@ import java.net.http.HttpResponse;
 
 
 @Controller
-@RequestMapping("/medicalstaff")
-public class MedicalStaffController {
+@RequestMapping("/membership")
+public class MembershipController {
 
     @GetMapping({"", "/"})
     public String getAll(
@@ -34,7 +34,7 @@ public class MedicalStaffController {
         try {
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest httpRequest = HttpRequest.newBuilder()
-                    .uri(new URI(GymManagementGUI.serverAddress()+"/medicalstaff/getall")) // url of server
+                    .uri(new URI(GymManagementGUI.serverAddress()+"/membership/getall")) // url of server
                     .GET() // request type
                     .header(HttpHeaders.CONTENT_TYPE, "application/json")
                     .header(HttpHeaders.AUTHORIZATION, session.encoded()) // Sets basic auth
@@ -43,12 +43,12 @@ public class MedicalStaffController {
             HttpResponse<String> resp = client.send(httpRequest, HttpResponse.BodyHandlers.ofString()); // response
 
             ObjectMapper mapper = new ObjectMapper();
-            MedicalStaff[] allMedicalStaff = mapper.readValue(resp.body(), MedicalStaff[].class); // Converts JSON string into MedicalStaff array
-            model.addAttribute("allMedicalStaff", allMedicalStaff); // Sends data to the page
+            Membership[] allMembership = mapper.readValue(resp.body(), Membership[].class); // Converts JSON string into Membership array
+            model.addAttribute("allMembership", allMembership); // Sends data to the page
         } catch (IOException | InterruptedException | URISyntaxException e) {
             e.printStackTrace();
         }
-        model.addAttribute("file", "../medicalstaff/menu.jsp");
+        model.addAttribute("file", "../membership/menu.jsp");
         return "admin/template/dashboard";
     }
 
@@ -57,22 +57,22 @@ public class MedicalStaffController {
             Model model
     ) {
         model.addAttribute("subheadding", "Create new Medical Staff member");
-        model.addAttribute("file", "../medicalstaff/form.jsp");
+        model.addAttribute("file", "../membership/form.jsp");
         return "admin/template/dashboard";
     }
 
     @PostMapping("/create")
     public RedirectView createPOST(
             HttpServletRequest request,
-            @ModelAttribute("medicalstaff") MedicalStaff medicalStaff
+            @ModelAttribute("membership") Membership membership
     ) {
         GymSession session = GymSessionRepository.getSession(request.getRequestedSessionId()); // Get session (Username and password)
         try {
             ObjectMapper mapper = new ObjectMapper();
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest httpRequest = HttpRequest.newBuilder()
-                    .uri(new URI(GymManagementGUI.serverAddress()+"/medicalstaff/create")) // url of server
-                    .POST(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(medicalStaff))) // request type
+                    .uri(new URI(GymManagementGUI.serverAddress()+"/membership/create")) // url of server
+                    .POST(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(membership))) // request type
                     .header(HttpHeaders.CONTENT_TYPE, "application/json")
                     .header(HttpHeaders.AUTHORIZATION, session.encoded()) // Sets basic auth
                     .build();
@@ -81,7 +81,7 @@ public class MedicalStaffController {
         } catch (URISyntaxException | InterruptedException | IOException e) {
             e.printStackTrace();
         }
-        return new RedirectView("/medicalstaff");
+        return new RedirectView("/membership");
     }
 
     @GetMapping("/{id}")
@@ -95,23 +95,23 @@ public class MedicalStaffController {
             ObjectMapper mapper = new ObjectMapper();
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest httpRequest = HttpRequest.newBuilder()
-                    .uri(new URI(GymManagementGUI.serverAddress()+"/medicalstaff/read/"+id)) // url of server
+                    .uri(new URI(GymManagementGUI.serverAddress()+"/membership/read/"+id)) // url of server
                     .GET() // request type
                     .header(HttpHeaders.CONTENT_TYPE, "application/json")
                     .header(HttpHeaders.AUTHORIZATION, session.encoded()) // Sets basic auth
                     .build();
 
             HttpResponse<String> resp = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-            MedicalStaff medicalstaff = mapper.readValue(resp.body(), MedicalStaff.class);
+            Membership membership = mapper.readValue(resp.body(), Membership.class);
 
-            model.addAttribute("medicalstaff", medicalstaff);
-            model.addAttribute("file", "../medicalstaff/details.jsp");
+            model.addAttribute("membership", membership);
+            model.addAttribute("file", "../membership/details.jsp");
             return "admin/template/dashboard";
 
         } catch (URISyntaxException | InterruptedException | IOException e) {
             e.printStackTrace();
         }
-        return "medicalstaff";
+        return "membership";
     }
 
     @GetMapping("/update/{id}")
@@ -125,40 +125,40 @@ public class MedicalStaffController {
             ObjectMapper mapper = new ObjectMapper();
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest httpRequest = HttpRequest.newBuilder()
-                    .uri(new URI(GymManagementGUI.serverAddress()+"/medicalstaff/read/"+id)) // url of server
+                    .uri(new URI(GymManagementGUI.serverAddress()+"/membership/read/"+id)) // url of server
                     .GET() // request type
                     .header(HttpHeaders.CONTENT_TYPE, "application/json")
                     .header(HttpHeaders.AUTHORIZATION, session.encoded()) // Sets basic auth
                     .build();
 
             HttpResponse<String> resp = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-            MedicalStaff medicalstaff = mapper.readValue(resp.body(), MedicalStaff.class);
+            Membership membership = mapper.readValue(resp.body(), Membership.class);
 
             model.addAttribute("subheadding", "Create new Medical Staff member");
-            model.addAttribute("medicalstaff", medicalstaff);
-            model.addAttribute("file", "../medicalstaff/form.jsp");
+            model.addAttribute("membership", membership);
+            model.addAttribute("file", "../membership/form.jsp");
             return "admin/template/dashboard";
 
         } catch (URISyntaxException | InterruptedException | IOException e) {
             e.printStackTrace();
         }
-        return "medicalstaff";
+        return "membership";
     }
 
     @PostMapping("/update/{id}")
     public RedirectView updatePOST(
             HttpServletRequest request,
-            @ModelAttribute("medicalstaff") MedicalStaff medicalStaff,
+            @ModelAttribute("membership") Membership membership,
             @PathVariable int id
     ) {
         GymSession session = GymSessionRepository.getSession(request.getRequestedSessionId()); // Get session (Username and password)
         try {
             ObjectMapper mapper = new ObjectMapper();
-            medicalStaff.setId(id);
+            membership.setID(id);
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest httpRequest = HttpRequest.newBuilder()
-                    .uri(new URI(GymManagementGUI.serverAddress()+"/medicalstaff/update")) // url of server
-                    .POST(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(medicalStaff))) // request type
+                    .uri(new URI(GymManagementGUI.serverAddress()+"/membership/update")) // url of server
+                    .POST(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(membership))) // request type
                     .header(HttpHeaders.CONTENT_TYPE, "application/json")
                     .header(HttpHeaders.AUTHORIZATION, session.encoded()) // Sets basic auth
                     .build();
@@ -167,7 +167,7 @@ public class MedicalStaffController {
         } catch (URISyntaxException | InterruptedException | IOException e) {
             e.printStackTrace();
         }
-        return new RedirectView("/medicalstaff");
+        return new RedirectView("/membership");
     }
 
     @GetMapping("/delete/{id}")
@@ -179,7 +179,7 @@ public class MedicalStaffController {
         try {
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest httpRequest = HttpRequest.newBuilder()
-                    .uri(new URI(GymManagementGUI.serverAddress()+"/medicalstaff/delete/"+id)) // url of server
+                    .uri(new URI(GymManagementGUI.serverAddress()+"/membership/delete/"+id)) // url of server
                     .DELETE() // request type
                     .header(HttpHeaders.CONTENT_TYPE, "application/json")
                     .header(HttpHeaders.AUTHORIZATION, session.encoded()) // Sets basic auth
@@ -189,6 +189,6 @@ public class MedicalStaffController {
         } catch (IOException | InterruptedException | URISyntaxException e) {
             e.printStackTrace();
         }
-        return new RedirectView("/medicalstaff");
+        return new RedirectView("/membership");
     }
 }

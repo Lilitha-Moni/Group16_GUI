@@ -3,9 +3,7 @@ package za.ac.cput.repository;
 import za.ac.cput.entity.GymSession;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 public class GymSessionRepository {
     private static Map<String, GymSession> repository;
@@ -20,20 +18,22 @@ public class GymSessionRepository {
         return current;
     }
 
-    public void create(GymSession gymSession) {
+    public boolean exists() {
+        return (current != null);
+    }
+
+    public static void create(GymSession gymSession) {
+        getRepository();
         repository.put(gymSession.getSessionId(), gymSession);
     }
 
-    public GymSession read(String sessionId) {
+    public static GymSession getSession(String sessionId) {
+        getRepository();
         return repository.get(sessionId);
     }
 
-    public static GymSession getSession(String sessionId) {
-        GymSessionRepository repo = getRepository();
-        return repo.read(sessionId);
-    }
-
-    public void delete(String sessionId) {
+    public static void delete(String sessionId) {
+        getRepository();
         repository.remove(sessionId);
     }
 

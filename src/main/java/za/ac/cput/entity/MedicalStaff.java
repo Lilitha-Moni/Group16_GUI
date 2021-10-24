@@ -12,34 +12,34 @@ public class MedicalStaff {
     private int medicalEmergenciesDone;
 
     public static class Builder {
-        private int mediStaffID;
-        private String mediStaffFirstName;
-        private String mediStaffLastName;
+        private final int id;
+        private String firstName;
+        private String lastName;
         private String phoneNumber;
         private String email;
 
         public Builder(MedicalStaff ms) {
-            this.mediStaffID = ms.id;
-            this.mediStaffFirstName = ms.firstName;
-            this.mediStaffLastName = ms.lastName;
+            this.id = ms.id;
+            this.firstName = ms.firstName;
+            this.lastName = ms.lastName;
             this.phoneNumber = ms.phoneNumber;
             this.email = ms.email;
         }
 
-        public Builder(int mediStaffID) {
-            this.mediStaffID = mediStaffID;
+        public Builder(int id) {
+            this.id = id;
         }
 
         public Builder setFirstName(String firstName)
         {
-            mediStaffFirstName = firstName;
+            this.firstName = firstName;
 
             return this;
         }
 
         public Builder setLastName(String lastName)
         {
-            mediStaffLastName = lastName;
+            this.lastName = lastName;
 
             return this;
         }
@@ -61,9 +61,9 @@ public class MedicalStaff {
         public MedicalStaff build()
         {
             MedicalStaff ms = new MedicalStaff();
-            ms.id = this.mediStaffID;
-            ms.firstName = this.mediStaffFirstName;
-            ms.lastName = this.mediStaffLastName;
+            ms.id = this.id;
+            ms.firstName = this.firstName;
+            ms.lastName = this.lastName;
             ms.phoneNumber = this.phoneNumber;
             ms.email = this.email;
             ms.checkupsDone = 0;

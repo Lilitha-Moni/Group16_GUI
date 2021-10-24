@@ -10,14 +10,11 @@ import javax.persistence.*;
 import java.util.Calendar;
 import java.util.Date;
 
-@Entity
-@Table(name = "membership")
+
 public class Membership {
-    @Id
+
     private int id;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "member_id")
     private Member member;
 
     private String type;
@@ -91,6 +88,10 @@ public class Membership {
 
     public int getID() {
         return id;
+    }
+
+    public void setID(int id) {
+        this.id = id;
     }
 
     public Member getMember() {

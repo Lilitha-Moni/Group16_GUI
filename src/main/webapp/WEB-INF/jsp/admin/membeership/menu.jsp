@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <h1>Medical Staff</h1>
@@ -10,6 +10,7 @@
         <th>Update</th>
         <th>Delete</th>
     </tr>
+    <%--@elvariable id="allMedicalStaff" type="java.util.List"--%>
     <c:forEach items="${allMedicalStaff}" var="current">
         <tr>
             <td>${current.firstName} ${current.lastName}</td>

@@ -24,17 +24,12 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Controller
 public class LoginController {
     @GetMapping( "/login")
-    public String login(
-            HttpServletRequest request,
-            Model model
-    )
+    public String login()
     {
         return "login";
     }
@@ -60,7 +55,7 @@ public class LoginController {
 
             if(resp.body().equals("success"))
             {
-                GymSessionRepository.getRepository().create(new GymSession(request.getRequestedSessionId(), username, password));
+                GymSessionRepository.create(new GymSession(request.getRequestedSessionId(), username, password));
                 return new RedirectView("dashboard");
             }
 
@@ -70,5 +65,13 @@ public class LoginController {
             e.printStackTrace();
         }
         return new RedirectView("login");
+    }
+    
+    @GetMapping("/logout")
+    public RedirectView logout(
+            HttpServletRequest request
+    ) {
+        GymSessionRepository.delete(request.getRequestedSessionId());
+        return new RedirectView("");
     }
 }
