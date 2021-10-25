@@ -313,3 +313,9 @@ nav .profile-details i {
 .sidebar.active ~ .home-section nav .profile-details {
     display: none;
 }
+
+.nav-links img {
+    max-width: 30px;
+    max-height: 30px;
+    filter: brightness(0) invert(1);
+}
