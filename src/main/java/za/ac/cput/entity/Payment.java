@@ -31,7 +31,7 @@ public class Payment {
 
     }
 
-    public int getPaymentID() {
+    public int getPaymentID(int ID) {
         return paymentID;
     }
 
