@@ -75,6 +75,10 @@ public class Package {
                 '}';
     }
 
+    public void setPackageID(int packageID) {
+        this.packageID = packageID;
+    }
+
     public static class Builder {
         private int packageID, membershipID, hoursPerWeek;
         private double price;
