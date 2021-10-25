@@ -131,7 +131,7 @@ public class EquipmentController {
             Equipment equipment = mapper.readValue(resp.body(), Equipment.class);
 
             model.addAttribute("equipment", equipment);
-            model.addAttribute("file", "../newEquipmentForm.jsp");
+            model.addAttribute("file", "../../newEquipmentForm.jsp");
             return "admin/template/dashboard";
 
         } catch (URISyntaxException | InterruptedException | IOException e) {
