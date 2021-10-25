@@ -319,3 +319,12 @@ nav .profile-details i {
     max-height: 30px;
     filter: brightness(0) invert(1);
 }
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar ul {
+    overflow: auto;
+}
