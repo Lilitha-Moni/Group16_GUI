@@ -35,6 +35,11 @@ public class Member {
 
     }
 
+    public Member setMemberID(int memberID) {
+        this.memberID = memberID;
+        return this;
+    }
+
     public int getMemberID() {
         return memberID;
     }
