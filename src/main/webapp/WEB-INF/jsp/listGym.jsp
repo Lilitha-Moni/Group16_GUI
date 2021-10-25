@@ -8,40 +8,35 @@
     <title>Gym Management</title>
 </head>
 <body>
-<div>
-    <div>
-        <h2>Gym Details</h2>
-        <hr/>
-        <a href="/new-gym">
-            <button type="submit">Add new book</button>
-        </a>
-        <br/><br/>
-        <div>
-            <div>
-                <div>Gym list</div>
-            </div>
-            <div>
-                <table>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                    </tr>
-                    <c:forEach var="gym" items="${listGym}">
-                        <tr>
-                            <td>${gym.gymID}</td>
-                            <td>${gym.gymName}</td>
-                            <td>
-                                <a href="/${gym.gymID}">Edit</a>
-                                <form action="/${gym.gymID}/delete" method="post">
-                                    <input type="submit" value="Delete" />
-                                </form>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </table>
-            </div>
-        </div>
-    </div>
+<h2>Gym Details </h2>
+
+<br/><br/>
+
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Manage</th>
+        </tr>
+
+        </thead>
+
+        <c:forEach items="${listGym}" var="gym">
+            <tbody>
+            <tr>
+                <td>${gym.gymID}</td>
+                <td>${gym.gymName} </td>
+                <td><a
+                        href="/read/{id}=<c:out value='${gym.gymID}' />">View</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp; <a href="/update=<c:out value='${gym.gymID}' />">Edit</a>
+
+            </tr>
+            </tbody>
+        </c:forEach>
+    </table>
 </div>
+
 </body>
 </html>

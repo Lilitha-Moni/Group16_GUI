@@ -33,12 +33,12 @@
             <tr>
                 <td>${member.memberID}</td>
                 <td>${member.firstName} ${member.lastName}</td>
-                <td><a
-                        href="/read/{id}=<c:out value='${member.memberID}' />">View</a>
+                <td> <a href="${pageContext.request.contextPath}/member/read/${member.memberID}">View</a>
+                    <a
+                            href="${pageContext.request.contextPath}/member/update/${member.memberID}">Edit</a>
                     &nbsp;&nbsp;&nbsp;&nbsp; <a
-                            href="/update=<c:out value='${member.memberID}' />">Edit</a>
-                    &nbsp;&nbsp;&nbsp;&nbsp; <a
-                            href="/delete/{id}=<c:out value='${member.memberID}' />">Delete</a></td>
+                            href="${pageContext.request.contextPath}/member/delete/${member.memberID}">Delete</a></td>
+
 
             </tr>
             </tbody>
