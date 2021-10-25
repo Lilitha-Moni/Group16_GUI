@@ -55,7 +55,7 @@ public class AdminController {
     public String createGET(
             Model model
     ) {
-        model.addAttribute("file", "../newAdminForm.jsp");
+        model.addAttribute("file", "../../newAdminForm.jsp");
         return "admin/template/dashboard";
     }
 
@@ -103,7 +103,7 @@ public class AdminController {
             Admin admin = mapper.readValue(resp.body(), Admin.class);
 
             model.addAttribute("admin", admin);
-            model.addAttribute("file", "../adminList.jsp");
+            model.addAttribute("file", "../../adminList.jsp");
             return "admin/template/dashboard";
 
         } catch (URISyntaxException | InterruptedException | IOException e) {
@@ -132,7 +132,7 @@ public class AdminController {
             Admin admin = mapper.readValue(resp.body(), Admin.class);
 
             model.addAttribute("admin", admin);
-            model.addAttribute("file", "../newAdminForm.jsp");
+            model.addAttribute("file", "../../newAdminForm.jsp");
             return "admin/template/dashboard";
 
         } catch (URISyntaxException | InterruptedException | IOException e) {
