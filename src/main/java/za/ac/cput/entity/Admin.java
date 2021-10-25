@@ -21,6 +21,11 @@ public class Admin {
     private String phoneNo;
     private String emailAddress;
 
+    public Admin setID(int ID) {
+        this.ID = ID;
+        return this;
+    }
+
 
     public Admin(Builder builder) {
         this.ID = builder.ID;

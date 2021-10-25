@@ -15,8 +15,8 @@ public class AdminFactory {
 
         int ID = GenericHelper.generateId();
         Admin admin = new Admin.Builder()
-                .setFirstName(fisrtName)
                 .setID(ID)
+                .setFirstName(fisrtName)
                 .setLastName(lastName)
                 .setPhoneNo(phoneNo)
                 .setEmailAddress(emailAddress)
