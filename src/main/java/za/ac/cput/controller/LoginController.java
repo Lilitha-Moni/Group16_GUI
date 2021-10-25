@@ -29,9 +29,12 @@ import java.net.http.HttpResponse;
 @Controller
 public class LoginController {
     @GetMapping( "/login")
-    public String login()
+    public String login(
+            HttpServletRequest request
+    )
     {
-        return "login";
+        GymSession exists = GymSessionRepository.getSession(request.getRequestedSessionId());
+        return exists == null ? "login" : "admin/template/dashboard";
     }
 
     @PostMapping("/login")

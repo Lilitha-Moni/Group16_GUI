@@ -1,6 +1,8 @@
 package za.ac.cput.controller;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
@@ -9,7 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import za.ac.cput.GymManagementGUI;
 import za.ac.cput.entity.GymSession;
+import za.ac.cput.entity.Member;
 import za.ac.cput.entity.Membership;
+import za.ac.cput.entity.MembershipBase;
 import za.ac.cput.repository.GymSessionRepository;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +23,11 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Map;
 
 
 @Controller
@@ -43,8 +52,8 @@ public class MembershipController {
             HttpResponse<String> resp = client.send(httpRequest, HttpResponse.BodyHandlers.ofString()); // response
 
             ObjectMapper mapper = new ObjectMapper();
-            Membership[] allMembership = mapper.readValue(resp.body(), Membership[].class); // Converts JSON string into Membership array
-            model.addAttribute("allMembership", allMembership); // Sends data to the page
+            Membership[] allMemberships = mapper.readValue(resp.body(), Membership[].class); // Converts JSON string into Membership array
+            model.addAttribute("allMemberships", allMemberships); // Sends data to the page
         } catch (IOException | InterruptedException | URISyntaxException e) {
             e.printStackTrace();
         }
@@ -148,14 +157,33 @@ public class MembershipController {
     @PostMapping("/update/{id}")
     public RedirectView updatePOST(
             HttpServletRequest request,
-            @ModelAttribute("membership") Membership membership,
             @PathVariable int id
     ) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
         GymSession session = GymSessionRepository.getSession(request.getRequestedSessionId()); // Get session (Username and password)
         try {
             ObjectMapper mapper = new ObjectMapper();
-            membership.setID(id);
             HttpClient client = HttpClient.newHttpClient();
+
+            HttpRequest getMember = HttpRequest.newBuilder()
+                    .uri(
+                            new URI(
+                                    GymManagementGUI.serverAddress()+
+                                            "/member/read/"+request.getParameter("member")))
+                    .header(HttpHeaders.CONTENT_TYPE, "application/json")
+                    .header(HttpHeaders.AUTHORIZATION, session.encoded()) // Sets basic auth
+                    .build();
+
+            HttpResponse<String> member = client.send(getMember, HttpResponse.BodyHandlers.ofString());
+
+            Membership membership = new Membership.Builder(id)
+                    .addMember(mapper.readValue(member.body(), Member.class))
+                    .setExpiryDate(format.parse(request.getParameter("expireDate")))
+                    .setTotalFees(Double.parseDouble(request.getParameter("totalFees")))
+                    .setType(request.getParameter("type"))
+                    .build();
+
             HttpRequest httpRequest = HttpRequest.newBuilder()
                     .uri(new URI(GymManagementGUI.serverAddress()+"/membership/update")) // url of server
                     .POST(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(membership))) // request type
@@ -164,7 +192,7 @@ public class MembershipController {
                     .build();
 
             client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-        } catch (URISyntaxException | InterruptedException | IOException e) {
+        } catch (URISyntaxException | InterruptedException | IOException | ParseException e) {
             e.printStackTrace();
         }
         return new RedirectView("/membership");

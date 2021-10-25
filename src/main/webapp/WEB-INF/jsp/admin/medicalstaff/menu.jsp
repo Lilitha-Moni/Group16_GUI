@@ -21,7 +21,7 @@
                 <td>${current.email}</td>
                 <td><a href="${pageContext.request.contextPath}/medicalstaff/${current.id}">view</a></td>
                 <td><a href="${pageContext.request.contextPath}/medicalstaff/update/${current.id}">update</a></td>
-                <td><a href="${pageContext.request.contextPath}/medicalstaff/delete/${current.id}">delete</a></td>
+                <td><a href="${pageContext.request.contextPath}/medicalstaff/delete/${current.id}" onclick="return confirm('Are you sure you want to remove this user as a member of the medical staff for this gym?');">delete</a></td>
             </tr>
         </c:forEach>
     </tbody>

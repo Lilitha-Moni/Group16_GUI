@@ -13,5 +13,5 @@
 <p>Checkups Done: <span>${medicalstaff.checkupsDone}</span></p>
 <p>Fitness Tests Done: <span>${medicalstaff.fitnessTestsDone}</span></p>
 <p>Medical Emergencies Handled: <span>${medicalstaff.medicalEmergenciesDone}</span></p>
-<a href="/medicalstaff/update/${medicalstaff.id}">Update</a>
-<a href="/medicalstaff/delete/${medicalstaff.id}" onclick="return confirm('Are you sure you want to remove this user as a member of the medical staff for this gym?');">Delete</a>
+<a href="${pageContext.request.contextPath}/medicalstaff/update/${medicalstaff.id}">Update</a>
+<a href="${pageContext.request.contextPath}/medicalstaff/delete/${medicalstaff.id}" onclick="return confirm('Are you sure you want to remove this user as a member of the medical staff for this gym?');">Delete</a>

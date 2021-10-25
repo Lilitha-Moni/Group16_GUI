@@ -6,7 +6,6 @@
 
 package za.ac.cput.entity;
 
-import javax.persistence.*;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -36,6 +35,12 @@ public class Membership {
             this.expireDate = membership.expireDate;
         }
 
+        public Builder(MembershipBase membershipBase) {
+            this.id = membershipBase.id;
+            this.type = membershipBase.type;
+            this.totalFees = membershipBase.totalFees;
+        }
+
         public Builder(int id) {
             this.id = id;
         }
@@ -54,6 +59,12 @@ public class Membership {
 
         public Builder setTotalFees(double totalFees) {
             this.totalFees = totalFees;
+
+            return this;
+        }
+
+        public Builder setExpiryDate(Date date) {
+            this.expireDate = date;
 
             return this;
         }
@@ -83,14 +94,13 @@ public class Membership {
         }
     }
 
-    public Membership() {
-    }
+    public Membership() { }
 
-    public int getID() {
+    public int getId() {
         return id;
     }
 
-    public void setID(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -137,14 +147,12 @@ public class Membership {
 
     @Override
     public String toString() {
-        return String.format(
-                "MEMBERSHIP\n" +
-                        "ID: %d\n" +
-                        "Member ID: %d\n" +
-                        "Type: %s\n" +
-                        "Total fees: %.2f\n" +
-                        "Expiry Date: %s\n",
-                id, member.getMemberID(), type, totalFees, expireDate.toString()
-        );
+        return "Membership{" +
+                "id=" + id +
+                ", member=" + member +
+                ", type='" + type + '\'' +
+                ", totalFees=" + totalFees +
+                ", expireDate=" + expireDate +
+                '}';
     }
 }
