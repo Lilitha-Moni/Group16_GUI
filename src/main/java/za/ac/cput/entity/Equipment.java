@@ -16,6 +16,7 @@ public class Equipment {
     @Id
     private int eqId;
     private String eqName, eqModel, eqInfo;
+    private int id;
 
 
     private Equipment(Builder builder) {
@@ -54,6 +55,10 @@ public class Equipment {
                 ", Model ='" + eqModel + '\'' +
                 ", Info ='" + eqInfo + '\'' +
                 '}';
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
 
