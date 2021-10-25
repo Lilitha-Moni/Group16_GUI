@@ -45,7 +45,7 @@ public class MemberController {
         } catch (IOException | InterruptedException | URISyntaxException e) {
             e.printStackTrace();
         }
-        model.addAttribute("file", "../memberlist.jsp");
+        model.addAttribute("file", "../member/memberlist.jsp");
         return "admin/template/dashboard";
     }
 
@@ -54,7 +54,7 @@ public class MemberController {
     public String createGET(
             Model model
     ) {
-        model.addAttribute("file", "../newMemberForm.jsp");
+        model.addAttribute("file", "../member/newMemberForm.jsp");
         return "admin/template/dashboard";
     }
 
@@ -102,7 +102,7 @@ public class MemberController {
             Member member = mapper.readValue(resp.body(), Member.class);
 
             model.addAttribute("member", member);
-            model.addAttribute("file", "../memberlist.jsp");
+            model.addAttribute("file", "../member/member.jsp");
             return "admin/template/dashboard";
 
         } catch (URISyntaxException | InterruptedException | IOException e) {
@@ -131,7 +131,7 @@ public class MemberController {
             Member member = mapper.readValue(resp.body(), Member.class);
 
             model.addAttribute("member", member);
-            model.addAttribute("file", "../newMemberForm.jsp");
+            model.addAttribute("file", "../member/newMemberForm.jsp");
             return "admin/template/dashboard";
 
         } catch (URISyntaxException | InterruptedException | IOException e) {
